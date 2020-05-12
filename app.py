@@ -1,11 +1,15 @@
-from flask import Flask
+import config
+from models.Saludo import Saludo
+from schemas.SaludoSchema import saludo_schema
 
-app = Flask(__name__)
+app = config.app
 
 
-@app.route('/')
+# Routes.
+@app.route('/saludo')
 def hello_world():
-    return 'Hello World!'
+    saludo = Saludo()
+    return saludo_schema.dump(saludo)
 
 
 if __name__ == '__main__':
